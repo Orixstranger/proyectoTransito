@@ -1,0 +1,247 @@
+<!DOCTYPE HTML>
+<!--
+        Alpha by HTML5 UP
+        html5up.net | @ajlkn
+        Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+    <head>
+        <title>Contact - Alpha by HTML5 UP</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" crossorigin="anonymous">
+    </head>
+    <body class="is-preload" style="background-image: none">
+        <div id="page-wrapper">
+
+            <!-- Main -->
+            <section id="main" class="container medium">
+                <header>
+
+                    <p>Registre su citación</p>
+                </header>
+                <div class="box">
+                    <form method="post" action="#">
+                        <div class="row gtr-50 gtr-uniform">
+                            <form>
+                                <fieldset>
+                                    <legend>  DATOS DE INFRACTOR:</legend>
+                                    Tipo de Documento:<div class="form-check form-check-inline" >
+                                        <input class="form-check-input" name="inlineRadioOptions" type="radio"  id="cedula_infractor" value="cedula">
+                                        <label class="form-check-label" for="cedula_infractor">Cédula</label>
+                                    </div>
+                                    <div class="form-check form-check-inline" >
+                                        <input class="form-check-input" name="inlineRadioOptions" type="radio"  id="licencia_infractor" value="licencia">
+                                        <label class="form-check-label" for="licencia_infractor">Licencia</label>
+                                    </div>
+                                    <div class="form-check form-check-inline" >
+                                        <input class="form-check-input" name="inlineRadioOptions" type="radio" id="pasaporte_infractor" value="pasaporte">
+                                        <label class="form-check-label" for="pasaporte_infractor">Pasaporte</label>
+                                    </div>
+                                    <br>
+                                    Cédula, Licencia o Pasaporte<br>
+                                    <div class="col-3 col-12-mobilep form-check form-check-inline">
+                                        <input type="text" name="cedula" maxlength="10" id="name" value="" placeholder="Número"/>
+                                    </div>
+                                    <div class="col-3 col-12-mobilep form-check form-check-inline">
+                                        <select id="categoria_licencia" name="categoria_licencia" class="form-control form-control-lg">
+                                            <option>Profesional</option>
+                                            <option>No Profesional</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-sm-sm-2 col-12-mobilep form-check form-check-inline">
+                                        <select id="tipo_licencia" name="tipo_licencia" class="form-control form-control-lg">
+                                            <option>A</option>
+                                            <option>B</option>
+                                            <option>C</option>
+                                            <option>D</option>
+                                            <option>E</option>
+                                            <option>F</option>
+                                            <option>G</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-4 col-12-mobilep form-check form-check-inline">
+                                        <select id="tipo_licencia" name="tipo_licencia" class="form-control form-control-lg">
+                                            <option>Azuay</option>
+                                            <option>Bolivar</option>
+                                            <option>Cañar</option>
+                                            <option>Carchi</option>
+                                            <option>Chimborazo</option>
+                                            <option>Cotopaxi</option>
+                                            <option>El Oro</option>
+                                            <option>Esmeraldas</option>
+                                            <option>Galápagos</option>
+                                            <option>Guayas</option>
+                                            <option>Imbabura</option>
+                                            <option>Loja</option>
+                                            <option>Los Rios</option>
+                                            <option>Manabi</option>
+                                            <option>Morona Santiago</option>
+                                            <option>Napo</option>
+                                            <option>Orellana</option>
+                                            <option>Pastaza</option>
+                                            <option>Pichincha</option>
+                                            <option>Santa Elena</option>
+                                            <option>Santo Domingo</option>
+                                            <option>Sucumbios</option>
+                                            <option>Tungurahua</option>
+                                            <option>Zamora Chinchipe</option>
+                                        </select>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="col-5 col-12-mobilep form-check form-check-inline">
+                                        <label>Nombre: </label><input type="text" name="nombres" id="nombres_infractor" value="" placeholder="Nombres" maxlength="30" />
+                                    </div>
+                                    <div class="col-5 col-12-mobilep form-check form-check-inline">
+                                        <label>Apellido: </label><input type="text" name="apellidos" id="apellidos_infractor" value="" placeholder="Apellidos" maxlength="30" />
+                                    </div>
+
+                                </fieldset>
+
+                            </form>
+                            <br>
+                        </div>
+                        <hr style="width:75%;">
+
+                        <div class="row gtr-50 gtr-uniform">
+                            <form>
+                                <fieldset>
+                                    <legend>  CARACTERÍSTICAS DEL VEHÍCULO:</legend>
+                                    <div class="col2 col-9-mobilep">
+                                        <div class="col-4 col-12-mobilep form-check form-check-inline">
+                                            <input type="text" name="placa" id="placa_vehiculo"  maxlength=""placeholder="Placa Vehicular" />
+                                        </div>
+                                        <div class="col-4 col-12-mobilep form-check form-check-inline">
+                                            <input type="text" name="marca" id="marca_vehiculo" placeholder="Marca" />
+                                        </div>
+                                        <div class="col-4 col-12-mobilep form-check form-check-inline">
+                                            <input type="text" name="tipo" id="tipo_vehiculo" placeholder="Tipo" maxlength="30" />
+                                        </div>
+                                        <div class="col-4 col-12-mobilep form-check form-check-inline">
+                                            <input type="text" name="color" id="color_vehiculo" placeholder="Color" />
+                                        </div>
+
+                                    </div>
+                                </fieldset>
+
+                            </form>
+                            <br>
+                        </div>
+                        <hr style="width:75%;">
+
+                        <div class="row gtr-50 gtr-uniform">
+                            <form>
+                                <fieldset>
+                                    <legend>  DATOS DE INFRACCIÓN: </legend>
+                                    <div class="col2 col-9-mobilep">
+                                        <div class="col-4 col-12-mobilep form-check form-check-inline">
+                                            <label>Clase de Infracción: </label>
+                                            <select id="articulo_infraccion" name="tipo_licencia" class="form-control form-control-lg">
+                                                <option>Art. 383: Conducción de vehiculo con llantas en mal Estado</option>
+                                                <option>Art. 384: Conduccion de vehiculo bajo efecto de sustancias estupefacientes, psicotrópicas</option>
+                                                <option>Art. 385: Conducción de vehículo en estado de embriaguez</option>
+                                                <option>Art. 386: Contravención de Tránsito de Primera Clase</option>
+                                                <option>Art. 387: Contravención de Tránsito de Segunda Clase</option>
+                                                <option>Art. 388: Contravención de Tránsito de Tercera Clase</option>
+                                                <option>Art. 389: Contravención de Tránsito de Cuarta Clase</option>
+                                                <option>Art. 390: Contravención de Tránsito de Quinta Clase</option>
+                                                <option>Art. 391: Contravención de Tránsito de Sexta Clase</option>
+                                                <option>Art. 392: Contravención de Tránsito de Septima Clase</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-3 col-12-mobilep form-check form-check-inline">
+                                            <label>Inciso: </label><input type="number" name="inciso" id="inciso_infraccion" value="" placeholder="Número" min="1" max="10" />
+                                        </div>
+                                        <div class="col-3 col-12-mobilep form-check form-check-inline">
+                                            <label>Numeral: </label><input type="number" name="numeral" id="numeral_infraccion" value="" placeholder="Número"  min="1" max="10" />
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                            <br>
+                        </div>
+                        <hr style="width:75%;">
+
+                        <div class="row gtr-50 gtr-uniform">
+                            <form>
+                                <fieldset>
+                                    <legend>  LOCALIZACIÓN: </legend>
+                                    <div>
+                                        <div class="form-check form-check-inline" >
+                                            <input class="form-check-input btn btn-success" name="inlineRadioOptions" type="radio"  id="canton" value="Loja" disabled>
+                                            <label class="form-check-label" for="canton" style="color: #61d43c">Loja</label>
+                                        </div>
+                                        <div class="form-check form-check-inline" >
+                                            <input class="form-check-input" name="inlineRadioOptions" type="radio"  id="carretera" value="carretera">
+                                            <label class="form-check-label" for="carretera">Carretera</label>
+                                        </div>
+                                        <div class="form-check form-check-inline" >
+                                            <input class="form-check-input" name="inlineRadioOptions" type="radio" id="urbano" value="urbano">
+                                            <label class="form-check-label" for="urbano">Urbano</label>
+                                        </div>
+                                        <div class="form-check form-check-inline" >
+                                            <input class="form-check-input" name="inlineRadioOptions" type="radio" id="rural" value="rural">
+                                            <label class="form-check-label" for="rural">Rural</label>
+                                        </div>
+                                        <div>
+                                            <label>SITIO DE INFRACCIÓN: </label><input type="text" name="lugar_infraccion" id="lugar_infraccion" placeholder="Lugar de Infracción" maxlength="200" />
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                            <br>
+                        </div>
+                        <hr style="width:75%;">
+
+                        <div class="row gtr-50 gtr-uniform">
+                            <form>
+                                <fieldset>
+                                    <legend>  BREVE RELATO DE LOS HECHOS Y CIRCUNSTANCIAS DE LA INFRACCIÓN </legend>
+                                    <div class="col-12">
+                                        <textarea name="message" id="message" placeholder="Redacte..." rows="6"></textarea>
+                                    </div>
+                                </fieldset>
+                            </form>
+                            <br>
+                        </div>
+                        <div class="col-12">
+                            <ul class="actions special">
+                                <li><input type="submit" value="Guardar" /></li>
+                                <li><input type="button" name="Cancelar" value="Cancelar" onClick="location.href = 'http://localhost:3000/transito/templates/home'"> </li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Footer -->
+
+
+        </div>
+
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.dropotron.min.js"></script>
+        <script src="assets/js/jquery.scrollex.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script type="text/javascript">
+            function ShowSelected()
+            {
+                /* Para obtener el valor */
+                var cod = document.getElementById("categoria_licencia").value;
+                alert(cod);
+
+                /* Para obtener el texto */
+                var combo = document.getElementById("categoria_licencia");
+                var selected = combo.options[combo.selectedIndex].text;
+                alert(selected);
+            }
+        </script>
+
+    </body>
+</html>
