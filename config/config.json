@@ -1,0 +1,16 @@
+{
+    "development":{
+        "username":"patricio",
+        "password":"root",
+        "database":"transito",
+        "host":"localhost",
+        "dialect": "mysql"
+    },
+    "staging":{
+        "username": "patricio",
+        "password": "root",
+        "database": "transito",
+        "host": "localhost",
+        "dialect": "mysql"
+    }
+}

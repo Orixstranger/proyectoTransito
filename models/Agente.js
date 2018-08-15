@@ -1,20 +1,16 @@
-'use strict';
-const Sequelize = require('sequelize');
-const sequelize = new Sequelize('database', 'username', 'password', {
-  host: 'localhost',
-  dialect: 'mysql'|'sqlite'|'postgres'|'mssql',
-  operatorsAliases: false,
 
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
-  },
-
-  // SQLite only
-  storage: 'path/to/database.sqlite'
-});
-
-// Or you can simply use a connection uri
-const sequelize = new Sequelize('postgres://user:pass@example.com:5432/dbname');
+//para los datos que se quiera guardar en la base de datos
+module.exports = function (sequelize, Sequelize){
+    var Agente = sequelize.define('agente',{
+        codigo_agente:{
+            primaryKey: true,
+            type: Sequelize.INTEGER
+        }
+    });
+    Agente.associate =  function(models){
+        models.agente.belongsTo(models.persona, {
+            foreignKey: 'id_persona'
+        });
+    };
+    return Agente;
+};

@@ -10,13 +10,9 @@ var router = express.Router();
  });*/
 
 /* GET home page. */
-router.get('/transito/templates/home', function (req, res, next) {
-    //var login = (req.session.user !== undefined);
-    //if (login == true) {
-       res.render('vistas_1/plantilla', {title: "Home", archivo: "./dinamic/app", h1: "AGENTE CIVIL DE TRÁNSITO"});
-    //} else {
-        //res.render('vistas_1/plantilla', {title: "Home", archivo: "./dinamic/app", login: login});
-    //}
+router.get('/home', function (req, res, next) {
+       res.render('vistas_1/plantilla', {title: "Home", archivo: "./dinamic/app", h1: "AGENTE CIVIL DE TRÁNSITO", 
+           fragmento: "../fragmentos/usuario/usuario_register.ejs"});
 });
 
 
@@ -25,15 +21,15 @@ router.get('/transito/templates/home', function (req, res, next) {
     //res.render('vistas_1/plantilla', {title: "Home", archivo: "./dinamic/app", h1: "AGENTE CIVIL DE TRÁNSITO"});
 //});
 //registro
-router.get('/transito/templates/citacion', function (req, res, next) {
-    res.render('vistas_1/plantilla', {title: "Citacion", archivo: "./dinamic/citacion", h1: "Infracciones de Tŕansito"});
+router.get('/citacion', function (req, res, next) {
+    res.render('vistas_1/plantilla', {title: "Citacion", archivo: "./dinamic/citacion", h1: "Infracciones de Tŕansito", fragmento: "../fragmentos/usuario/usuario_register.ejs"});
 });
 
 //LOGIN
-router.get('/transito/login', function (req, res, next) {
+router.get('/login', function (req, res, next) {
     res.render('login');
 });
-router.post('/transito/login', function (req, res, next) {
+router.post('/login', function (req, res, next) {
     var email = req.body.login;
     var clave = req.body.password;
     if (email == 'deisons8@gmail.com' && clave == '1234') {
@@ -41,19 +37,20 @@ router.post('/transito/login', function (req, res, next) {
         //req.session.save();
         console.log(req.session.user + " *********** ");
         req.session.cookie.expires = false;
-        res.redirect("/templates/home");
+        res.redirect("/transito/templates/home");
     } else {
-        res.redirect('/transito/login');
+        res.redirect('/login');
     }
 
 });
 
-router.get('/transito/templates/registro', function (req, res, next) {
-    res.render('vistas_1/plantilla', {title: "Registro", archivo: "./dinamic/registro_citacion", h1: "Registro"});
+router.get('/registro', function (req, res, next) {
+    res.render('vistas_1/plantilla', {title: "Registro", archivo: "./dinamic/registro_citacion", h1: "Registro",
+    fragmento: "../fragmentos/usuario/cabecera_registro.ejs"});
 });
 
-router.get('/transito/templates/acerca', function (req, res, next) {
-    res.render('vistas_1/plantilla', {title: "Quienes Somos", archivo: "./dinamic/acerca", h1: "¿QUIENES SOMOS?"});
+router.get('/acerca', function (req, res, next) {
+    res.render('vistas_1/plantilla', {title: "Quienes Somos",fragmento: "../fragmentos/usuario/usuario_register.ejs", archivo: "./dinamic/acerca", h1: "¿QUIENES SOMOS?"});
 });
 
 router.get('/transito/cerrar', function (req, res, next) {
@@ -91,4 +88,5 @@ router.get('/administracion/principal', function (req, res, next) {
     //}
     //res.render('suma', { title: 'Sumar dos variables'});
 });
+
 module.exports = router;
