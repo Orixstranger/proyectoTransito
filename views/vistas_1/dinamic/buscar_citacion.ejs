@@ -15,7 +15,7 @@
                             <legend>  DATOS DE CITACION</legend>
                             <div class="col-3 col-12-mobilep form-check form-check-inline">
                                 <label class="form-control-label">Articulo:</label>
-                                <input type="text" name="citacion_buscar"  maxlength="10" id="citacion_buscar" placeholder="Citacion"/>
+                                <input type="text" name="citacion_buscar" class="citacion_buscar"  maxlength="6" id="citacion_buscar" placeholder="Citacion"/>
                                 <button type="button" name="btn_buscar_citacion" id="btn_buscar_citacion" ><i class="col-3 col-12-mobilep form-check form-check-inline fas fa-search" style="height: 40px;"></i></button>
                             </div>
                             <br>
@@ -94,6 +94,19 @@
                 }
             });
         });
+    </script>
+    <script>
+        onload = function () {
+            var dato = document.querySelectorAll('.citacion_buscar')[0];
+            
+            dato.onkeypress = function (e) {
+                if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                    return false;
+            }
+            dato.onpaste = function (e) {
+                e.preventDefault();
+            }
+        }
     </script>
 
 </body>

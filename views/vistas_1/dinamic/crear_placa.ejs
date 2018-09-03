@@ -15,21 +15,21 @@
                             <legend>  DATOS DE VEHICULO</legend>
                             <div class="form-group">
                                 <label for="nuevo_placa_vehiculo" class="form-control-label">Placa Vehicular:</label>
-                                <input type="text" name="nuevo_placa_vehiculo" id="nuevo_placa_vehiculo"  maxlength="7" placeholder="Placa Vehicular" />
+                                <input type="text" name="nuevo_placa_vehiculo" id="nuevo_placa_vehiculo"  required pattern="[A-Z]{3}\d{4}"  maxlength="7" placeholder="ABC1234" />
                             </div>
                             <div class="form-group">
                                 <label for="nuevo_marca_vehiculo" class="form-control-label">Marca:</label>
-                                <input type="text" name="nuevo_marca_vehiculo" id="nuevo_marca_vehiculo" placeholder="Marca" />
+                                <input type="text" name="nuevo_marca_vehiculo" id="nuevo_marca_vehiculo" onkeypress="return soloLetras(event)" placeholder="Marca" />
 
                             </div>
                             <div class="form-group">
                                 <label for="nuevo_tipo_vehiculo" class="form-control-label">Tipo de Vehiculo:</label>
-                                <input type="text" name="nuevo_tipo_vehiculo" id="nuevo_tipo_vehiculo" placeholder="Tipo" maxlength="30" />
+                                <input type="text" name="nuevo_tipo_vehiculo" id="nuevo_tipo_vehiculo" onkeypress="return soloLetras(event)" placeholder="Tipo" maxlength="30" />
 
                             </div>
                             <div class="form-group">
                                 <label for="nuevo_color_vehiculo" class="form-control-label">Color:</label>
-                                <input type="text" name="nuevo_color_vehiculo" id="nuevo_color_vehiculo" placeholder="Color" />
+                                <input type="text" name="nuevo_color_vehiculo" id="nuevo_color_vehiculo" onkeypress="return soloLetras(event)" placeholder="Color" />
 
                             </div>
                             <div class="modal-footer">
@@ -49,41 +49,38 @@
         </section>
     </div>
 
-    <!--
     <script>
-        $("#btn_buscar").click(function () {
-            var html = "Ningun Dato que mostrar";
-            $.ajax({
-                type: "POST",
-                url: "/buscar",
-                data: "cedula=" + $("#cedula_buscar").val(),
-                success: function (data) {
-                    html = "";
-                    if (!data) {
+        onload = function () {
+            var dato = document.querySelectorAll('.crear_codigo_citacion')[0];
 
-                    } else {
-                        $('#cedula_buscar').val(data.cedula);
-                        $('#nombres_infractor').val(data.nombres);
-                        $('#apellidos_infractor').val(data.apellidos);
-                    }
-                    // alert(data);
-
-                }
-            });
-        });
+            dato.onkeypress = function (e) {
+                if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                    return false;
+            }
+            dato.onpaste = function (e) {
+                e.preventDefault();
+            }
+        }
     </script>
-    
-    
     <script>
-                    $(document).ready(function () {
-                        $('#div_infractor').hide();
+        function soloLetras(e) {
+            var key = e.keyCode || e.which;
+            var tecla = String.fromCharCode(key).toLowerCase();
+            var letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+            var especiales = "8-37-39-46";
 
-                    });
-                    $('#btn_crear_infractor').click(function () {
-                        console.log('presentar div');
-                        $('#div_infractor').show();
+            var tecla_especial = false
+            for (var i in especiales) {
+                if (key == especiales[i]) {
+                    tecla_especial = true;
+                    break;
+                }
+            }
 
-                    });
-                </script>-->
+            if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+                return false;
+            }
+        }
+    </script>
 </body>
 

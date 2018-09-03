@@ -21,7 +21,7 @@
                             <legend>  INGRESE CIRCUNSTANCIAS DE LA INFRACCION:</legend>
                             <div class="demoHeaders">
                                 <label class="form-control-label">CODIGO DE CITACION:</label>
-                                <input type="text" name="crear_codigo_citacion"  maxlength="10" id="crear_codigo_citacion" placeholder="ID citacion"/>
+                                <input type="text" name="crear_codigo_citacion" class="crear_codigo_citacion" maxlength="6" id="crear_codigo_citacion" placeholder="ID citacion" required/>
 
                             </div>
                             <br>
@@ -40,7 +40,7 @@
                             <br>
                             <div class="demoHeaders">
                                 <label for="nuevo_detalle_circunstancia" class="form-control-label" >DETALLE:</label>
-                                <input id="nuevo_detalle_circunstancia" name="nuevo_detalle_circunstancia" type="text" placeholder="Escriba aqui...">
+                                <input id="nuevo_detalle_circunstancia" name="nuevo_detalle_circunstancia" type="text" required placeholder="Escriba aqui...">
                             </div>
                             
                             <div class="modal-footer">
@@ -60,6 +60,20 @@
 
     <script>
         $('#datepicker').datepicker({maxDate: '+0d', dateFormat: 'yy-mm-dd'});
+    </script>
+    
+    <script>
+        onload = function () {
+            var dato = document.querySelectorAll('.crear_codigo_citacion')[0];
+            
+            dato.onkeypress = function (e) {
+                if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                    return false;
+            }
+            dato.onpaste = function (e) {
+                e.preventDefault();
+            }
+        }
     </script>
     
 

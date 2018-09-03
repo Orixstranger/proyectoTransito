@@ -16,28 +16,28 @@
                         <fieldset>
                             <legend>  DATOS DE INFRACTOR:</legend>
                             <div class="col-3 col-12-mobilep form-check form-check-inline">
-                                <input type="text" name="placa_buscar" maxlength="10" id="placa_buscar" placeholder="Ingrese Placa Vehicular"/>
+                                <input type="text" name="placa_buscar" maxlength="10" pattern="[A-Z]{3}\d{4}" required id="placa_buscar" placeholder="ABC1234"/>
                                 <button type="button" name="btn_buscar_placa" id="btn_buscar_placa"><i class="col-3 col-12-mobilep form-check form-check-inline fas fa-search" style="height: 40px;"></i></button>
 
                             </div>
                             <br>
                             <div class="form-group">
                                 <label for="placa_vehiculo" class="form-control-label">Placa Vehicular:</label>
-                                <input type="text" name="placa_vehiculo" id="placa_vehiculo"  maxlength="7" placeholder="Placa Vehicular" />
+                                <input type="text" name="placa_vehiculo" id="placa_vehiculo"  maxlength="7" placeholder="Placa Vehicular" disabled/>
                             </div>
                             <div class="form-group">
                                 <label for="marca_vehiculo" class="form-control-label">Marca:</label>
-                                <input type="text" name="marca_vehiculo" id="marca_vehiculo" placeholder="Marca" />
+                                <input type="text" name="marca_vehiculo" id="marca_vehiculo" placeholder="Marca" disabled/>
 
                             </div>
                             <div class="form-group">
                                 <label for="tipo_vehiculo" class="form-control-label">Tipo de Vehiculo:</label>
-                                <input type="text" name="tipo_vehiculo" id="tipo_vehiculo" placeholder="Tipo" maxlength="30" />
+                                <input type="text" name="tipo_vehiculo" id="tipo_vehiculo" placeholder="Tipo" maxlength="30" disabled/>
 
                             </div>
                             <div class="form-group">
                                 <label for="color_vehiculo" class="form-control-label">Color:</label>
-                                <input type="text" name="color_vehiculo" id="color_vehiculo" placeholder="Color" />
+                                <input type="text" name="color_vehiculo" id="color_vehiculo" placeholder="Color" disabled/>
 
                             </div>
 

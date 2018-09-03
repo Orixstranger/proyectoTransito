@@ -14,15 +14,15 @@
                             <legend>  DATOS DE ARTICULOS</legend>
                             <div class="col-3 col-12-mobilep form-check form-check-inline">
                                 <label class="form-control-label">Articulo:</label>
-                                <input type="text" name="articulo_buscar"  maxlength="10" id="articulo_buscar" placeholder="Articulo"/>
+                                <input type="text" name="articulo_buscar" class="articulo_buscar" maxlength="10" id="articulo_buscar" required placeholder="Articulo"/>
                             </div>
                             <div class="col-3 col-12-mobilep form-check form-check-inline">
                                 <label class="form-control-label">Inciso:</label>
-                                <input type="text" name="inciso_buscar"  maxlength="10" id="inciso_buscar" placeholder="Inciso"/>
+                                <input type="text" name="inciso_buscar" class="inciso_buscar" maxlength="10" id="inciso_buscar" required placeholder="Inciso"/>
                             </div>
                             <div class="col-3 col-12-mobilep form-check form-check-inline">
                                 <label class="form-control-label">Numeral:</label>
-                                <input type="text" name="numeral_buscar"  maxlength="10" id="numeral_buscar" placeholder="Numeral"/>
+                                <input type="text" name="numeral_buscar" class="numeral_buscar" maxlength="10" id="numeral_buscar" required placeholder="Numeral"/>
                                 <button type="button" name="btn_buscar_articulo" id="btn_buscar_articulo" ><i class="col-3 col-12-mobilep form-check form-check-inline fas fa-search" style="height: 40px;"></i></button>
                             </div>
                             <div class="col-3 col-12-mobilep form-check form-check-inline">
@@ -60,7 +60,7 @@
             var numero_articulo = $('#articulo_buscar').val();
             var numero_inciso = $('#inciso_buscar').val();
             var numeral = $('#numeral_buscar').val();
-            $.ajax({ 
+            $.ajax({
                 type: "POST",
                 url: "/metodoBuscarArticulo",
                 data: {'numero_articulo': numero_articulo, 'numero_inciso': numero_inciso, 'numeral': numeral},
@@ -69,13 +69,43 @@
                     $('#nombreArticulo').val(data.nombre_articulo);
                     $('#detalleArticulo').val(data.detalle_articulo);
                     $('#cuerpoArticulo').val(data.detalle_numeral);
-                }, 
+                },
                 error: function (xhr, ajaxOptions, thrownError) {
                     alert('Articulo no encontrado. ERROR');
                 }
             });
         });
     </script>
+    <script>
+        onload = function () {
+            var ele = document.querySelectorAll('.articulo_buscar')[0];
+            var ele1 = document.querySelectorAll('.inciso_buscar')[0];
+            var ele2 = document.querySelectorAll('.numeral_buscar')[0];
+            ele.onkeypress = function (e) {
+                if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                    return false;
+            }
+            ele.onpaste = function (e) {
+                e.preventDefault();
+            }
+            ele1.onkeypress = function (e) {
+                if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                    return false;
+            }
+            ele1.onpaste = function (e) {
+                e.preventDefault();
+            }
+            ele2.onkeypress = function (e) {
+                if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                    return false;
+            }
+            ele2.onpaste = function (e) {
+                e.preventDefault();
+            }
+        }
+        
+    </script>
+    
 
 </body>
 

@@ -1104,6 +1104,22 @@ pre code {
     padding: 1em 1.5em;
     overflow-x: auto;
 }
+.contenedor{
+    width:80%;
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+    
+}
+
+.main{
+   width: 70%;
+   background: #fff;
+   padding:20px;
+   float: left;
+   box-sizzing:border-box;
+}
+
 
 .align-left {
     text-align: left;
@@ -1196,6 +1212,19 @@ textarea {
     padding: 0 1em;
     text-decoration: none;
     width: 100%;
+}
+aside{
+    width: 30%;
+    padding: 20px;
+    box-sizzing: border-box;
+    background: #ccc;
+    float:left;
+}
+
+@media screen and (max-width: 800px){
+    .contenedor{
+        width:100%;
+    }
 }
 
 input[type="text"]:invalid,
@@ -1895,6 +1924,7 @@ body.landing #header {
 
 body.landing #header nav a {
     color: rgba(255, 255, 255, 0.5);
+    width:100%;
 }
 
 #header {

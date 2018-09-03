@@ -30,40 +30,5 @@
         </section>
     </div>
 
-    <!--
-    <script>
-        $("#btn_buscar").click(function () {
-            var html = "Ningun Dato que mostrar";
-            $.ajax({
-                type: "POST",
-                url: "/buscar",
-                data: "cedula=" + $("#cedula_buscar").val(),
-                success: function (data) {
-                    html = "";
-                    if (!data) {
-
-                    } else {
-                        $('#cedula_buscar').val(data.cedula);
-                        $('#nombres_infractor').val(data.nombres);
-                        $('#apellidos_infractor').val(data.apellidos);
-                    }
-                    // alert(data);
-
-                }
-            });
-        });
-    </script>
     
-    
-    <script>
-                    $(document).ready(function () {
-                        $('#div_infractor').hide();
-
-                    });
-                    $('#btn_crear_infractor').click(function () {
-                        console.log('presentar div');
-                        $('#div_infractor').show();
-
-                    });
-                </script>-->
 </body>

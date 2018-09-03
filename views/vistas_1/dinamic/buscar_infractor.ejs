@@ -15,18 +15,18 @@
                             Ingrese cedula de infractor:
 
                             <div class="col-3 col-12-mobilep form-check form-check-inline">
-                                <input type="text" name="cedula_buscar"  maxlength="10" id="cedula_buscar" placeholder="Numero"/>
+                                <input type="text" name="cedula_buscar" class="cedula_buscar" maxlength="10" id="cedula_buscar" placeholder="Numero"/>
                                 <button type="button" name="btn_buscar" id="btn_buscar" ><i class="col-3 col-12-mobilep form-check form-check-inline fas fa-search" style="height: 40px;"></i></button>
 
                             </div>
                             <div class="form-group">
-                                <label>Cedula: </label><input type="text" name="cedula_infractor" id="cedula_infractor"  placeholder="Cedula" maxlength="30" />
+                                <label>Cedula: </label><input type="text" name="cedula_infractor" id="cedula_infractor"  placeholder="Cedula" maxlength="30" disabled />
                             </div>
                             <div class="form-group">
-                                <label>Nombre: </label><input type="text" name="nombres_infractor" id="nombres_infractor"  placeholder="Nombres" maxlength="30" />
+                                <label>Nombre: </label><input type="text" name="nombres_infractor" id="nombres_infractor"  placeholder="Nombres" maxlength="30" disabled/>
                             </div>
                             <div class="form-group">
-                                <label>Apellido: </label><input type="text" name="apellidos_infractor" id="apellidos_infractor" value="" placeholder="Apellidos" maxlength="30" />
+                                <label>Apellido: </label><input type="text" name="apellidos_infractor" id="apellidos_infractor" value="" placeholder="Apellidos" maxlength="30" disabled />
                             </div>
                             <%if(login == true){%>
                             <div class="modal-footer">
@@ -75,6 +75,19 @@
                 }
             });
         });
+    </script>
+    <script>
+        onload = function () {
+            var dato = document.querySelectorAll('.cedula_buscar')[0];
+            
+            dato.onkeypress = function (e) {
+                if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                    return false;
+            }
+            dato.onpaste = function (e) {
+                e.preventDefault();
+            }
+        }
     </script>
 
     <script>
