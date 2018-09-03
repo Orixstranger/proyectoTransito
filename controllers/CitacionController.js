@@ -236,23 +236,6 @@ class CitacionController {
             res.redirect('/inicio');
     }
     
-    registrarNuevaPlaca(req, res, done) {
-        var Ubicacion = models.ubicacion;
-        var dataVehiculo = {
-            placa_veh: req.body.nuevo_placa_vehiculo,
-            marca_veh: req.body.nuevo_marca_vehiculo,
-            tipo_veh: req.body.nuevo_tipo_vehiculo,
-            color_veh: req.body.nuevo_color_vehiculo
-        };
-        Vehiculo.create(dataVehiculo).then(function (newVehiculo, created) {
-            if (!newVehiculo) {
-                return done(null, false);
-            }
-            if (newVehiculo) {
-                return done(null, newVehiculo);
-            }
-        });
-        res.redirect('/buscar_placa');
-    }
+    
 }
 module.exports = CitacionController;
