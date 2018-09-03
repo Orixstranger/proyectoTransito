@@ -1,0 +1,15 @@
+<header id="header" >
+    <nav id="nav">
+        <ul class="links">
+            <% if (login == false) { %>
+            <li><a href="/acerca">Quienes Somos</a></li>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/inicio" class="button special">Sign Up</a></li>
+            <li><a href="/citacion">Evita Citaciones</a></li>
+            <% } else { %>
+            <li><a href="/registro_citacion">Crear Citacion</a></li>
+            <li><a href="/cerrar">Salir</a></li>
+            <% } %>
+        </ul>
+    </nav>
+</header>

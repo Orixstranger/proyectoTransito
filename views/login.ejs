@@ -4,7 +4,6 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <title>Custom Login Form Styling</title>
         <meta name="description" content="Custom Login Form Styling with CSS3" />
         <meta name="keywords" content="css3, login, form, custom, input, submit, button, html5, placeholder" />
         <meta name="author" content="Codrops" />
@@ -28,34 +27,78 @@
                 </span>
             </div><!--/ Codrops top bar -->
 
-            <header>
-
-                <h1>Custom <strong>Login Form</strong> Styling</h1>
-                <h2>Creative and modern form design with CSS magic</h2>
-
-               
-
-                <div class="support-note">
-                    <span class="note-ie">Sorry, only modern browsers.</span>
-                </div>
-
-            </header>
 
             <section class="main">
-                <form class="form-1">
+                <form class="form-1" id="validation-form" method="POST" action="/login">
                     <p class="field">
-                        <input type="text" name="login" placeholder="Username or email">
+                        <input type="text" class="name" name="txt_codigo" id="txt_codigo" placeholder="ingrese su código">
                         <i class="icon-user icon-large"></i>
                     </p>
                     <p class="field">
-                        <input type="password" name="password" placeholder="Password">
+                        <input type="password" class="name" name="txt_clave" id="txt_clave" placeholder="ingrese su clave">
                         <i class="icon-lock icon-large"></i>
                     </p>
                     <p class="submit">
-                        <button type="submit" name="submit"><i class="icon-arrow-right icon-large"></i></button>
+                        <button type="submit" value="Inicio de Sesion"><i class="icon-arrow-right icon-large"></i></button>
                     </p>
                 </form>
             </section>
         </div>
+        <script>
+            jQuery(function ($) {
+
+                $('#validation-form').validate({
+                    errorElement: 'div',
+                    errorClass: 'help-block',
+                    focusInvalid: false,
+                    ignore: "",
+                    rules: {
+
+                        txt_codigo: {
+                            required: true
+                        },
+                        txt_clave: {
+                            required: true
+                        }
+                    },
+                    highlight: function (e) {
+                        $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+                    },
+
+                    success: function (e) {
+                        $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+                        $(e).remove();
+
+
+                    },
+
+                    errorPlacement: function (error, element) {
+
+                        if (element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+                            var controls = element.closest('div[class*="col-"]');
+                            if (controls.find(':checkbox,:radio').length > 1)
+                                controls.append(error);
+                            else
+                                error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+                        } else if (element.is('.select2')) {
+                            error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+                        } else if (element.is('.chosen-select')) {
+                            error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+                        } else {
+                            error.insertAfter(element.parent());
+                        }
+                    },
+
+                    submitHandler: function (form) {
+
+                        form.submit();
+                    },
+                    invalidHandler: function (form) {
+                    }
+                });
+            });
+        </script>
     </body>
+
+
 </html>

@@ -1,92 +1,91 @@
 var express = require('express');
 var router = express.Router();
+var wkhtmltopdf = require('wkhtmltopdf');
+var path = require('path');
+var saveToPDF = require('./pdfhelper');
+//-------------------------------------------------------------
+var autentification = require('../controllers/AdministradorController');
+var authController = new autentification();
+var passport = require('passport');
 
-/*router.get('/transito/templates/forma11', function (req, res, next) {
- res.render('vistas/app', {title: "Prueba vista 1"});
- });
- 
- router.get('/transito/templates/forma12', function (req, res, next) {
- res.render('vistas/app_1', {title: "Prueba vista 2"});
- });*/
+var citacion = require('../controllers/CitacionController');
+var citController = new citacion();
+//-------------------------------------------------------------
 
 /* GET home page. */
-router.get('/home', function (req, res, next) {
-       res.render('vistas_1/plantilla', {title: "Home", archivo: "./dinamic/app", h1: "AGENTE CIVIL DE TRÁNSITO", 
-           fragmento: "../fragmentos/usuario/usuario_register.ejs"});
+router.get('/pdf', (req, res) => {
+       
+    saveToPDF('buscar_infractor',path.resolve(__dirname,'./test2.pdf'),{},() =>{
+        res.send('ok')
+    });
 });
 
+router.get('/home', citController.verHome);
 
+router.get('/', citController.verIntro);
 
-//router.get('/transito/templates/home', function (req, res, next) {
-    //res.render('vistas_1/plantilla', {title: "Home", archivo: "./dinamic/app", h1: "AGENTE CIVIL DE TRÁNSITO"});
-//});
+router.get('/acerca', citController.verAcerca);
+
+router.get('/citacion', citController.verArticuloCitacion);
+
+router.get('/inicio', authController.signin);
+router.post('/login', passport.authenticate('local-signin', {successRedirect: '/buscar_infractor',
+    failureRedirect: '/home'}
+));
+
 //registro
-router.get('/citacion', function (req, res, next) {
-    res.render('vistas_1/plantilla', {title: "Citacion", archivo: "./dinamic/citacion", h1: "Infracciones de Tŕansito", fragmento: "../fragmentos/usuario/usuario_register.ejs"});
+router.post("/registro/save", passport.authenticate('local-signup', {successRedirect: '/registro_citacion',
+    failureRedirect: '/home'}
+));
+
+//INFRACTOR
+//vista infractor
+router.get('/buscar_infractor', citController.buscarInfractor);
+router.get('/crear_infractor', citController.crearInfractor);
+//buscar infractor
+router.post('/buscar', citController.buscar);
+//crear infractor
+router.post('/registroInfractor', citController.registrarNuevoInfractor);
+
+//PLACA
+//vista placa
+router.get('/buscar_placa', citController.buscarPlaca);
+router.get('/crear_placa', citController.crearPlaca);
+//buscar placa
+router.post('/metodoBuscarPlaca', citController.metodoBuscarPlaca);
+//crear placa
+router.post('/registroPlaca', citController.registrarNuevaPlaca);
+
+//ARTICULO
+//VISTA ARTICULO
+router.get('/buscar_articulo', citController.buscarArticulo);
+//BUSCAR ARTICULO
+router.post('/metodoBuscarArticulo', citController.metodoBuscarArticulo);
+
+router.get('/registro_citacion', citController.verRegistroCitacion);
+
+//CITACION
+//VISTA CREAR CITACION
+router.get('/crear_circunstancia', citController.crearCircunstancia);
+router.get('/buscar_citacion', citController.buscarCitacion);
+//crear citacion
+router.post('/registrarCitacion', citController.registrarCitacion);
+//metodo buscar citacion
+router.post('/metodoBuscarCitacion', citController.metodoBuscarCitacion);
+
+//MAPA
+router.get('/mapa', citController.mapaGeolocalizacion);
+router.get('/confirmacion', citController.confirmacion);
+
+//CERRAR PAGINA
+router.get('/cerrar', citController.cerrar);
+
+//CREAR PDF
+router.post('/postPDF', function (req, res, next) {
+
 });
 
-//LOGIN
-router.get('/login', function (req, res, next) {
-    res.render('login');
-});
-router.post('/login', function (req, res, next) {
-    var email = req.body.login;
-    var clave = req.body.password;
-    if (email == 'deisons8@gmail.com' && clave == '1234') {
-        req.session.user = 'Administrador';
-        //req.session.save();
-        console.log(req.session.user + " *********** ");
-        req.session.cookie.expires = false;
-        res.redirect("/transito/templates/home");
-    } else {
-        res.redirect('/login');
-    }
-
-});
-
-router.get('/registro', function (req, res, next) {
-    res.render('vistas_1/plantilla', {title: "Registro", archivo: "./dinamic/registro_citacion", h1: "Registro",
-    fragmento: "../fragmentos/usuario/cabecera_registro.ejs"});
-});
-
-router.get('/acerca', function (req, res, next) {
-    res.render('vistas_1/plantilla', {title: "Quienes Somos",fragmento: "../fragmentos/usuario/usuario_register.ejs", archivo: "./dinamic/acerca", h1: "¿QUIENES SOMOS?"});
-});
-
-router.get('/transito/cerrar', function (req, res, next) {
-    req.session.destroy();
-    res.render('/');
-});
-//administrador
-/*router.get('/registro/administrador', function (req, res, next) {
- var login = (req.session.user != undefined);
- if (login == true) {
- res.render('templates/app', {title: 'Principal', login: login,
- fragmento: '../fragmentos/administrador/frmadmin', usuario: req.session.user});
- } else {
- res.render('templates/app', {title: 'Principal', login: login});
- }
- });*/
-
-//router.post('/registro/administrador', administradorController.guardar);
-
-/*router.get('/noticias/acerca/:a/:b', function(req, res, next) {
- res.render('acerca', { title: 'Acerca de noticas', descripcion: 'las noticias que se quiera publicar '+req.params.id});
- });*/
-
-//router.get('/noticias/resta/:a/:b', pruebasi.resta);
-//router.get('/noticias/suma/:a/:b', obj.suma);
-//router.post('/noticias/suma/', obj.sumarPost);
-
-router.get('/administracion/principal', function (req, res, next) {
-    //var login = (req.session.user != undefined);
-    //if (login == true) {
-    //res.render('templates/app', {title: 'Principal', login: login,
-    //fragmento: '../fragmentos/noticias/frm_noticias'});
-    //} else {
-    //res.render('templates/app', {title: 'Principal', login: login});
-    //}
-    //res.render('suma', { title: 'Sumar dos variables'});
-});
 
 module.exports = router;
+
+

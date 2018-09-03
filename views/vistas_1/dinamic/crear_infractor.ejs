@@ -1,0 +1,48 @@
+<body class="is-preload" style="background-image: none; ">
+    <div id="page-wrapper" >
+
+        <!-- Main -->
+        <section id="main" class="container medium ">
+            <header>
+
+                <p>CREAR INFRACTOR</p>
+            </header>
+            <div class="box" style="background-color: #fff">
+                <form class="contact-form modal-content col container"  method="POST" action='/registroInfractor'>
+                    <div >
+                        <%if(login == true){%>
+                        <fieldset>
+                            <legend>  DATOS DE INFRACTOR:</legend>
+
+                            <div class="form-group">
+                                <label for="nuevo_cedula_infractor" class="form-control-label">Cedula:</label>
+                                <input type="text" data-minlength="3" data-maxlength="150" class="form-control" id="nuevo_cedula_infractor" name="nuevo_cedula_infractor" maxlength="10"/>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="nuevo_nombres_infractor" class="form-control-label">Nombres:</label>
+                                <input type="text" data-minlength="3" data-maxlength="150" class="form-control" id="nuevo_nombres_infractor" name="nuevo_nombres_infractor" />
+
+                            </div>
+                            <div class="form-group">
+                                <label for="nuevo_apellidos_infractor" class="form-control-label">Apellidos:</label>
+                                <input type="text" data-minlength="3" data-maxlength="150" class="form-control" id="nuevo_apellidos_infractor" name="nuevo_apellidos_infractor" />
+
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="location.href = '/buscar_infractor';" >Cancelar</button>
+                                <button type="submit" onclick="location.href = '/buscar_infractor'" class="btn btn-primary">Guardar</button>
+                            </div>
+                        </fieldset>
+                        <%}else{%>
+                        <div class="modal-footer">
+                            <button type="button" onclick="location.href = '/home'" class="btn btn-primary">Ir a inicio</button>
+                        </div>
+                        <%}%>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+</body>

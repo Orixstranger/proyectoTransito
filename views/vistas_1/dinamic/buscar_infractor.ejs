@@ -1,0 +1,96 @@
+<body class="is-preload" style="background-image: none; ">
+    <div id="page-wrapper">
+
+        <!-- Main -->
+        <section id="main" class="container medium">
+            <header>
+
+                <p>REGISTRE SU CITACION :</p>
+            </header>
+            <div class="box" style="background-color: #fff">
+                <form class="contact-form modal-content col container" id="validation-form" method="POST" action="/buscar">
+                    <div id="test">
+                        <fieldset>
+                            <legend>  DATOS DE INFRACTOR:</legend>
+                            Ingrese cedula de infractor:
+
+                            <div class="col-3 col-12-mobilep form-check form-check-inline">
+                                <input type="text" name="cedula_buscar"  maxlength="10" id="cedula_buscar" placeholder="Numero"/>
+                                <button type="button" name="btn_buscar" id="btn_buscar" ><i class="col-3 col-12-mobilep form-check form-check-inline fas fa-search" style="height: 40px;"></i></button>
+
+                            </div>
+                            <div class="form-group">
+                                <label>Cedula: </label><input type="text" name="cedula_infractor" id="cedula_infractor"  placeholder="Cedula" maxlength="30" />
+                            </div>
+                            <div class="form-group">
+                                <label>Nombre: </label><input type="text" name="nombres_infractor" id="nombres_infractor"  placeholder="Nombres" maxlength="30" />
+                            </div>
+                            <div class="form-group">
+                                <label>Apellido: </label><input type="text" name="apellidos_infractor" id="apellidos_infractor" value="" placeholder="Apellidos" maxlength="30" />
+                            </div>
+                            <%if(login == true){%>
+                            <div class="modal-footer">
+                                <a href = '/buscar_placa'> Siguiente</a>
+                                <a href = '/crear_infractor' style="color: green"> Crea infractor</a>
+                                <a href = '/pdf' style="color: red"> Generar PDF</a>
+                            </div>
+                            <%}else{%>
+                            <div class="modal-footer">
+                                <a href = '/home'> Ir a Home</a>
+                                
+                            </div>
+                            <%}%>
+
+                        </fieldset>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+    <script src="/javascripts/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        $("#btn_buscar").click(function () {
+            var html = "Ningun Dato que mostrar";
+            $.ajax({
+                type: "POST",
+                url: "/buscar",
+                data: "cedula=" + $("#cedula_buscar").val(),
+                success: function (data) {
+                    html = "";
+                    alert("Datos Encontrados!!!");
+                    $('#cedula_buscar').val(data.cedula);
+                    $('#cedula_infractor').val(data.cedula);
+                    $('#nombres_infractor').val(data.nombres);
+                    $('#apellidos_infractor').val(data.apellidos);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Datos no encontrados');
+                    alert('NECESITA CREAR INFRACTOR!!');
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $.ajax({
+            url: 'http://localhost:3000/buscar_citacion',
+            dataType: 'json'
+        }).done(data => console.log(data));
+    </script>
+
+
+</body>
+
+
+
+
+
+
+
+

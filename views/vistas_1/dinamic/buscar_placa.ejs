@@ -1,0 +1,99 @@
+<body class="is-preload" style="background-image: none; ">
+    <div id="page-wrapper" >
+
+        <!-- Main -->
+        <section id="main" class="container medium ">
+            <header>
+
+                <p>CREAR INFRACTOR</p>
+            </header>
+            <%if(login == true){%>
+            <div class="box" style="background-color: #fff">
+                <form class="contact-form modal-content col container" id="validation-form" method="POST" action="/metodoBuscarPlaca">
+                    <div >
+
+
+                        <fieldset>
+                            <legend>  DATOS DE INFRACTOR:</legend>
+                            <div class="col-3 col-12-mobilep form-check form-check-inline">
+                                <input type="text" name="placa_buscar" maxlength="10" id="placa_buscar" placeholder="Ingrese Placa Vehicular"/>
+                                <button type="button" name="btn_buscar_placa" id="btn_buscar_placa"><i class="col-3 col-12-mobilep form-check form-check-inline fas fa-search" style="height: 40px;"></i></button>
+
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="placa_vehiculo" class="form-control-label">Placa Vehicular:</label>
+                                <input type="text" name="placa_vehiculo" id="placa_vehiculo"  maxlength="7" placeholder="Placa Vehicular" />
+                            </div>
+                            <div class="form-group">
+                                <label for="marca_vehiculo" class="form-control-label">Marca:</label>
+                                <input type="text" name="marca_vehiculo" id="marca_vehiculo" placeholder="Marca" />
+
+                            </div>
+                            <div class="form-group">
+                                <label for="tipo_vehiculo" class="form-control-label">Tipo de Vehiculo:</label>
+                                <input type="text" name="tipo_vehiculo" id="tipo_vehiculo" placeholder="Tipo" maxlength="30" />
+
+                            </div>
+                            <div class="form-group">
+                                <label for="color_vehiculo" class="form-control-label">Color:</label>
+                                <input type="text" name="color_vehiculo" id="color_vehiculo" placeholder="Color" />
+
+                            </div>
+
+                            <div class="modal-footer">
+                                <a href = '/buscar_articulo'> Siguiente</a>
+                                <a href = '/crear_placa' style="color: green"> Ingresar nueva placa vehicular</a>
+
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+
+
+                        </fieldset>
+                    </div>
+                </form>
+            </div>
+            <%}else{%>
+            <div class="modal-footer">
+                <a href = '/home'> Ir a principal</a>
+            </div>
+            <%}%>
+        </section>
+    </div>
+    <script src="/javascripts/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        $("#btn_buscar_placa").click(function () {
+            var html = "Ningun Dato que mostrar";
+            $.ajax({
+                type: "POST",
+                url: "/metodoBuscarPlaca",
+                data: "placa_veh=" + $("#placa_buscar").val(),
+                success: function (data) {
+                    html = "";
+                    alert("Datos Encontrados!!!");
+                    $('#placa_buscar').val(data.placa_veh);
+                    $('#placa_vehiculo').val(data.placa_veh);
+                    $('#marca_vehiculo').val(data.marca_veh);
+                    $('#tipo_vehiculo').val(data.tipo_veh);
+                    $('#color_vehiculo').val(data.color_veh);
+                    // alert(data);
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Datos no encontrados');
+                    alert('NECESITA CREAR PLACA!!');
+                }
+            });
+        });
+    </script>
+
+</body>
+

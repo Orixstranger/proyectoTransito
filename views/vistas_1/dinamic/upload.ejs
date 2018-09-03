@@ -1,0 +1,34 @@
+
+<body class="is-preload" style="background-image: none; ">
+    <div id="page-wrapper" >
+
+        <!-- Main -->
+        <section id="main" class="container medium ">
+            <header>
+
+                <p>DETALLE DE INFRACCION</p>
+            </header>
+            <div class="box" style="background-color: #fff">
+                <form method="POST" action='/imagen_local' enctype='multipart/form-data'>
+                    <div class="file-field input-lg">
+                        <fieldset>
+                            <legend>  INGRESE CIRCUNSTANCIAS DE LA INFRACCION:</legend>
+                            <div class="form-group">
+                                <img src='#{message}' alt=''/>
+                                <input type="text" id="title" name='title'>
+                                <br>
+                                |Selecciona la imagen
+                                <input type="file" id="photo" name='photo'>
+                                <br>
+                                <input type='submit'  value='Guardar'>
+                            </div>
+                                    
+                        </fieldset>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+
+</body>
+

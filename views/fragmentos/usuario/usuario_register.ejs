@@ -1,187 +1,259 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-            body {font-family: Arial, Helvetica, sans-serif;}
 
-            /* Full-width input fields */
-            input[type=text], input[type=password] {
-                width: 100%;
-                padding: 12px 20px;
-                margin: 8px 0;
-                display: inline-block;
-                border: 1px solid #ccc;
-                box-sizing: border-box;
-            }
+<style>
+    body {font-family: Arial, Helvetica, sans-serif;}
 
-            /* Set a style for all buttons */
-            button {
-                background-color: #4CAF50;
-                color: white;
-                padding: 14px 20px;
-                margin: 8px 0;
-                border: none;
-                cursor: pointer;
-                width: 100%;
-            }
+    /* Full-width input fields */
+    input[type=text], input[type=password] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
 
-            button:hover {
-                opacity: 0.8;
-            }
+    /* Set a style for all buttons */
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+    }
 
-            /* Extra styles for the cancel button */
-            .cancelbtn {
-                width: auto;
-                padding: 10px 18px;
-                background-color: #f44336;
-            }
+    button:hover {
+        opacity: 0.8;
+    }
 
-            /* Center the image and position the close button */
-            .imgcontainer {
-                text-align: center;
-                margin: 24px 0 12px 0;
-                position: relative;
-            }
+    /* Extra styles for the cancel button */
+    .cancelbtn {
+        width: auto;
+        padding: 10px 18px;
+        background-color: #f44336;
+    }
 
-            img.avatar {
-                width: 40%;
-                border-radius: 50%;
-            }
+    /* Center the image and position the close button */
+    .imgcontainer {
+        text-align: center;
+        margin: 24px 0 12px 0;
+        position: relative;
+    }
 
-            .container {
-                padding: 16px;
-            }
+    img.avatar {
+        width: 40%;
+        border-radius: 50%;
+    }
 
-            span.psw {
-                float: right;
-                padding-top: 16px;
-            }
+    .container {
+        padding: 16px;
+    }
 
-            /* The Modal (background) */
-            .modal {
-                display: none; /* Hidden by default */
-                position: fixed; /* Stay in place */
-                z-index: 1; /* Sit on top */
-                left: 0;
-                top: 0;
-                width: 100%; /* Full width */
-                height: 100%; /* Full height */
-                overflow: auto; /* Enable scroll if needed */
-                background-color: rgb(0,0,0); /* Fallback color */
-                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-                padding-top: 60px;
-                
-            }
+    span.psw {
+        float: right;
+        padding-top: 16px;
+    }
 
-            /* Modal Content/Box */
-            .modal-content {
-                background-color: #fefefe;
-                margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-                border: 1px solid #888;
-                width: 40%; /* Could be more or less, depending on screen size */
-                
-                
-            }
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        padding-top: 60px;
 
-            /* The Close Button (x) */
-            .close {
-                position: absolute;
-                right: 25px;
-                top: 0;
-                color: #000;
-                font-size: 35px;
-                font-weight: bold;
-            }
+    }
 
-            .close:hover,
-            .close:focus {
-                color: red;
-                cursor: pointer;
-            }
-
-            /* Add Zoom Animation */
-            .animate {
-                -webkit-animation: animatezoom 0.6s;
-                animation: animatezoom 0.6s
-            }
-
-            @-webkit-keyframes animatezoom {
-                from {-webkit-transform: scale(0)} 
-                to {-webkit-transform: scale(1)}
-            }
-
-            @keyframes animatezoom {
-                from {transform: scale(0)} 
-                to {transform: scale(1)}
-            }
-
-            /* Change styles for span and cancel button on extra small screens */
-            @media screen and (max-width: 300px) {
-                span.psw {
-                    display: block;
-                    float: none;
-                }
-                .cancelbtn {
-                    width: 100%;
-                }
-            }
-        </style>
-    </head>
-    <body>
-        <button onclick="document.getElementById('id01').style.display = 'block'" style="width:auto; font-size: 20px;">Register Here</button>
-        <div class="container" style="width: 18rem;">
-            <div class="container" style="width: 18rem;">
-                <div id="id01" class="modal">
-
-                    <form class="modal-content animate container" action="/action_page.php">
-                        <div class="imgcontainer">
-                            <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
-                            <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" style="width: 100px; height: 100px;" class="avatar">
-
-                        </div>
+    /* Modal Content/Box */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+        border: 1px solid #888;
+        width: 40%; /* Could be more or less, depending on screen size */
 
 
-                        <div class="form-group">
-                            <label for="firstname_reg" style="font-size: 20px;"><b>FirstName</b></label>
-                            <input type="text" class="form-control" style="font-size: 20px;" placeholder="Enter FirstName" id="firstname_reg" name="firstname_reg" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="lastname_reg" style="font-size: 20px;"><b>LastName</b></label>
-                            <input type="text" class="form-control" style="font-size: 20px;" placeholder="Enter LastName" name="lastname_reg" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="correo_reg" style="font-size: 20px;"><b>Email</b></label>
-                            <input type="email" class="form-control" style="font-size: 20px;" placeholder="Enter Email" name="correo_reg" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="clave_reg" style="font-size: 20px;"><b>Password</b></label>
-                            <input type="password" class="form-control" style="font-size: 20px;" placeholder="Enter Password" name="clave_reg" required>
-                        </div>
-                        <button type="submit" style="font-size: 20px;" class="btn btn-success btn-lg btn-block">Guardar</button>
+    }
 
+    /* The Close Button (x) */
+    .close {
+        position: absolute;
+        right: 25px;
+        top: 0;
+        color: #000;
+        font-size: 35px;
+        font-weight: bold;
+    }
 
-                        <div style="background-color:#f1f1f1">
-                            <button type="button" onclick="document.getElementById('id01').style.display = 'none'" class="cancelbtn col-sm-2 col-form-label">Cancel</button>
-                            <span class="psw">Forgot <a href="#">password?</a></span>
-                        </div>
-                    </form>
-                </div>
-            </div>
+    .close:hover,
+    .close:focus {
+        color: red;
+        cursor: pointer;
+    }
+
+    /* Add Zoom Animation */
+    .animate {
+        -webkit-animation: animatezoom 0.6s;
+        animation: animatezoom 0.6s
+    }
+
+    @-webkit-keyframes animatezoom {
+        from {-webkit-transform: scale(0)} 
+        to {-webkit-transform: scale(1)}
+    }
+
+    @keyframes animatezoom {
+        from {transform: scale(0)} 
+        to {transform: scale(1)}
+    }
+
+    /* Change styles for span and cancel button on extra small screens */
+    @media screen and (max-width: 300px) {
+        span.psw {
+            display: block;
+            float: none;
+        }
+        .cancelbtn {
+            width: 100%;
+        }
+    }
+</style>
+
+<button onclick="document.getElementById('id01').style.display = 'block'" style="width:auto; font-size: 20px;">Register Here</button>
+
+<div id="id01" class="modal">
+    <div class="imgcontainer">
+        <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
+        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" style="width: 100px; height: 100px;" class="avatar">
+
+    </div>
+    <form name="formulario1" class="contact-form modal-content animate container" id="validation-form" method="POST" action="/registro/save">
+        <div class="form-group">
+            <label class="control-label" for="cedula"></label>
+            <input type="text" id="cedula" name="cedula" class="name" placeholder="Ingrese su cedula" maxlength="10" required/>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="nombres"></label>
+            <input type="text" id="nombres" name="nombres" class="name" placeholder="Ingrese su nombre" required/>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="apellidos"></label>
+            <input class="form-control" name="apellidos" id="apellidos" type="text" placeholder="Ingrese apellidos" required/>        
         </div>
 
-        <script>
-            // Get the modal
-            var modal = document.getElementById('id01');
+        <div class="form-group">
+            <label class="control-label" for="codigo"></label>
+            <input type="text" id="codigo" name="codigo" class="name" placeholder="Ingrese su codigo" required/>    
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="clave"></label>
+            <input type="password" id="clave" name="clave" class="text" placeholder="Ingrese su clave" required/>    
+        </div>
+        <button onclick="enviar_formulario()" type="submit" style="font-size: 20px;" class="btn btn-success btn-lg btn-block">Guardar</button>
+        <div style="background-color:#f1f1f1">
+            <button type="button" onclick="document.getElementById('id01').style.display = 'none'" class="cancelbtn col-sm-2 col-form-label">Cancel</button>
+        </div>
+    </form>
+</div>
+<script>
+    function enviar_formulario() {
+        document.formulario1.submit()
+    }
+</script> 
+<script>
+    // Get the modal
+    var modal = document.getElementById('id01');
 
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+<script src="/javascripts/jquery.validate.min.js"></script>
+<script>
+    jQuery(function ($) {
+
+        $('#validation-form').validate({
+            errorElement: 'div',
+            errorClass: 'help-block',
+            focusInvalid: false,
+            ignore: "",
+            rules: {
+                nombres: {
+                    required: true
+                },
+
+                apellidos: {
+                    required: true
+                },
+
+                codigo: {
+                    required: true
+                },
+                clave: {
+                    required: true
                 }
-            }
-        </script>
+            },
 
-    </body>
-</html>
+            /*messages: {
+             email: {
+             required: "Please provide a valid email.",
+             email: "Please provide a valid email."
+             },
+             password: {
+             required: "Please specify a password.",
+             minlength: "Please specify a secure password."
+             },
+             state: "Please choose state",
+             subscription: "Please choose at least one option",
+             gender: "Please choose gender",
+             agree: "Please accept our policy"
+             },*/
+
+            highlight: function (e) {
+                $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+            },
+
+            success: function (e) {
+                $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+                $(e).remove();
+
+
+            },
+
+            errorPlacement: function (error, element) {
+
+                if (element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+                    var controls = element.closest('div[class*="col-"]');
+                    if (controls.find(':checkbox,:radio').length > 1)
+                        controls.append(error);
+                    else
+                        error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+                } else if (element.is('.select2')) {
+                    error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+                } else if (element.is('.chosen-select')) {
+                    error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+                } else {
+                    error.insertAfter(element.parent());
+                }
+            },
+
+            submitHandler: function (form) {
+
+                form.submit();
+            },
+            invalidHandler: function (form) {
+            }
+        });
+    });
+</script>
+
 

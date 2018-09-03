@@ -1,0 +1,69 @@
+
+<body class="is-preload" style="background-image: none; ">
+    <div id="page-wrapper" >
+
+        <!-- Main -->
+        <section id="main" class="container medium ">
+            <header>
+
+                <p>DETALLE DE INFRACCION</p>
+            </header>
+            <div class="box" style="background-color: #fff">
+                <form class="contact-form modal-content col container" id="validation-form">
+                    <div >
+                        <fieldset>
+                            <legend>  INGRESE CIRCUNSTANCIAS DE LA INFRACCION:</legend>
+                            <div class="form-group">
+                                <label for="nuevo_detalle_circunstancia" class="form-control-label" >Detalle:</label>
+                                <a href = '/upload'> Subida de imagen</a>
+                            </div>
+                            
+                            <div class="modal-footer">
+
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="location.href = '/registrar_citacion';" >Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                            </div>
+                        </fieldset>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!--
+    <script>
+        $("#btn_buscar").click(function () {
+            var html = "Ningun Dato que mostrar";
+            $.ajax({
+                type: "POST",
+                url: "/buscar",
+                data: "cedula=" + $("#cedula_buscar").val(),
+                success: function (data) {
+                    html = "";
+                    if (!data) {
+
+                    } else {
+                        $('#cedula_buscar').val(data.cedula);
+                        $('#nombres_infractor').val(data.nombres);
+                        $('#apellidos_infractor').val(data.apellidos);
+                    }
+                    // alert(data);
+
+                }
+            });
+        });
+    </script>
+    
+    
+    <script>
+                    $(document).ready(function () {
+                        $('#div_infractor').hide();
+
+                    });
+                    $('#btn_crear_infractor').click(function () {
+                        console.log('presentar div');
+                        $('#div_infractor').show();
+
+                    });
+                </script>-->
+</body>

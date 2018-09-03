@@ -1,0 +1,68 @@
+<link href="/css/redmond/jquery-ui-1.9.2.custom.css" rel="stylesheet">
+<script src="/js/jquery-1.8.3.js"></script>
+<script src="/js/jquery-ui-1.9.2.custom.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+<body class="is-preload" style="background-image: none; ">
+    <div id="page-wrapper" >
+
+        <!-- Main -->
+        <section id="main" class="container medium ">
+            <header>
+
+                <p>DETALLE DE INFRACCION</p>
+            </header>
+            <%if(login == true){%>
+            <div class="box" style="background-color: #fff">
+                <form class="contact-form modal-content col container" id="validation-form" method="POST" action="/registrarCitacion">
+                    <div >
+
+
+                        <fieldset>
+                            <legend>  INGRESE CIRCUNSTANCIAS DE LA INFRACCION:</legend>
+                            <div class="demoHeaders">
+                                <label class="form-control-label">CODIGO DE CITACION:</label>
+                                <input type="text" name="crear_codigo_citacion"  maxlength="10" id="crear_codigo_citacion" placeholder="ID citacion"/>
+
+                            </div>
+                            <br>
+                            <div class="demoHeaders">
+                                <label class="form-control-label">Fecha:</label>
+                                <input  name="datepicker" id="datepicker" required/>
+                            </div>
+                            <div class="demoHeaders">
+                                <label class="form-control-label">HORA DE CITACION:</label>
+                                <input  name="timepicker" id="timepicker" type="time" required/>
+                            </div>
+                            <div class="demoHeaders">
+                                <label class="form-control-label">HORA DE DETENCION:</label>
+                                <input  name="timepickerDet" id="timepickerDet" type="time"/>
+                            </div>
+                            <br>
+                            <div class="demoHeaders">
+                                <label for="nuevo_detalle_circunstancia" class="form-control-label" >DETALLE:</label>
+                                <input id="nuevo_detalle_circunstancia" name="nuevo_detalle_circunstancia" type="text" placeholder="Escriba aqui...">
+                            </div>
+                            
+                            <div class="modal-footer">
+
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="location.href='/buscar_citacion'">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                            </div>
+                        </fieldset>
+                    </div>
+                </form>
+            </div>
+            <%}else{%>
+            <a href="/home">Ir a principal</a>
+            <%}%>
+        </section>
+    </div>
+
+    <script>
+        $('#datepicker').datepicker({maxDate: '+0d', dateFormat: 'yy-mm-dd'});
+    </script>
+    
+
+</body>
+
+

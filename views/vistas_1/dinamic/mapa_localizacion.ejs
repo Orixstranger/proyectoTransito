@@ -1,0 +1,185 @@
+<style>
+    #map{
+        height: 530px;
+        width: 60%;
+        margin: auto;
+        padding:1px;
+        border:1px solid #021a40;
+        background-color:#ff0;
+    }
+    html, body{
+        height: 100%;
+        margin: 2;
+        padding: 2;
+    }
+</style>
+
+<div class="container" align="center">
+    <div class="card mb-3" >
+        <div class="card-header">
+            <h1 class="card-title">GEOLOCALIZACION</h1>
+        </div>
+        <div class="card-body">
+            <form id="formulario1" method="POST" action="/coordenadas">
+
+                <label class="col-sm-2 col-form-label" >Latitud</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control"  placeholder="Latitud" id="txt_latitud"  disabled>
+                </div>
+                <label class="col-sm-2 col-form-label">Longitud</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="Longitud" id="txt_longitud" disabled>
+                </div>
+                <label class="col-sm-2 col-form-label" >Calles</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control"  placeholder="Calles" id="txt_direccion" disabled>
+                </div>
+                <%if(login == true){%>
+                <div class="modal-footer">
+                    <a href = '/crear_circunstancia'> Siguiente</a>
+                </div>
+                <%}else{%>
+                <div class="modal-footer">
+                    <a href = '/home'> Ir a pantalla principal</a>
+                </div>
+                <%}%>
+
+            </form>
+        </div>
+    </div>
+</div>
+<div id="map"></div>
+
+
+
+<script>
+    // Note: This example requires that you consent to location sharing when
+    // prompted by your browser. If you see the error "The Geolocation service
+    // failed.", it means you probably did not give permission for the browser to
+    // locate you. 
+    var map, infoWindow, pos;
+    //var marcador;//Variables creadas para el marcador y coordenadas del mapa
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: -34.397, lng: 150.644},
+            zoom: 18
+
+        });
+        infoWindow = new google.maps.InfoWindow;
+
+
+        // Try HTML5 geolocation.
+        var content = document.getElementById("txt_direccion");
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                setMapa(pos);//Utilizando el metodo setMapa
+                document.getElementById("txt_latitud").value = pos['lat'];
+                document.getElementById("txt_longitud").value = pos['lng'];
+                var dir = "";
+                var latlng = new google.maps.LatLng(pos['lat'], pos['lng']);
+                var geocoder = new google.maps.Geocoder();
+                geocoder.geocode({"latLng": latlng}, function (results, status) {
+                    if (status === google.maps.GeocoderStatus.OK) {
+                        if (results[0]) {
+                            dir = results[0].formatted_address;
+                        } else {
+                            dir = "No se ha podido obtener ninguna dirección en esas coordenadas.";
+                        }
+                    } else {
+                        dir = "Servicio de Codificación Geográfica ha fallado con el siguiente error: " + status + ".";
+                    }
+                    content.value = dir;
+                });
+                document.getElementById("txt_direccion").value = dir;
+                infoWindow.setPosition(pos);
+                infoWindow.setContent('Location found.');
+                infoWindow.open(map);
+                map.setCenter(pos);
+
+            }, function () {
+                handleLocationError(true, infoWindow, map.getCenter());
+            });
+        } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, map.getCenter());
+        }
+    }
+
+    function setMapa(coord) {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 18,
+            center: new google.maps.LatLng(coord.lat, coord.lng),
+        });
+
+        /*creamos el marcador*/
+        var marcador = new google.maps.Marker({
+            map: map,
+            draggable: true,
+            animation: google.maps.Animation.DROP,
+            position: new google.maps.LatLng(coord.lat, coord.lng),
+        });
+        /*Agregamos un evento al marcador con la funcion callback
+         * al lugar que el evento dragend indica*/
+        //cuando el usuario suelta el marcador
+        marcador.addListener('click', toggleBounce);
+        marcador.addListener('dragend', function (event) {
+            document.getElementById('txt_latitud').value = this.getPosition().lat();
+            document.getElementById('txt_longitud').value = this.getPosition().lng();
+            var content = document.getElementById("txt_direccion");
+            var dir = "";
+            var latlng = new google.maps.LatLng(this.getPosition().lat(), this.getPosition().lng());
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({"latLng": latlng}, function (results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        dir = results[0].formatted_address;
+                    } else {
+                        dir = "No se ha podido obtener ninguna dirección en esas coordenadas.";
+                    }
+                } else {
+                    dir = "Servicio de Codificación Geográfica ha fallado con el siguiente error: " + status + ".";
+                }
+                content.value = dir;
+            });
+            document.getElementById("txt_direccion").value = dir;
+        });
+
+    }
+    function toggleBounce() {
+        if (marcador.getAnimation() !== null) {
+            marcador.setAnimation(null);
+        } else {
+            marcador.setAnimation(google.maps.Animation.BOUNCE);
+        }
+    }
+
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                'Error: The Geolocation service failed.' :
+                'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+    }
+
+
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEgDn7TfjLvInPX3j2b_xskZqbKur3Su4&callback=initMap">
+</script>
+
+
+<link href="/assents/jqueryUI/jquery-ui.css" rel="stylesheet">
+
+<script src="/assents/jqueryUI/external/jquery/jquery.js" type="text/javascript"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+<script src="/assents/jqueryUI/external/jquery/jquery.js" type="text/javascript"></script>
+
+

@@ -1,20 +1,24 @@
 'use strict';
-const Sequelize = require('sequelize');
-const sequelize = new Sequelize('database', 'username', 'password', {
-  host: 'localhost',
-  dialect: 'mysql'|'sqlite'|'postgres'|'mssql',
-  operatorsAliases: false,
+const uuidv4 = require('uuid/v4');
+var bCrypt = require('bcrypt-node');
+class AdministradorController {
+    signup(req, res) {
+        res.render('home', {login: false});
+    }
+    signin(req, res) {
+        res.render('login',{login: false});
+    }
+    isLoggedIn(req, res, next) {
+        if (req.isAuthenticated())
+            return next();
 
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
-  },
-
-  // SQLite only
-  storage: 'path/to/database.sqlite'
-});
-
-// Or you can simply use a connection uri
-const sequelize = new Sequelize('postgres://user:pass@example.com:5432/dbname');
+        res.redirect('/registro');
+    }
+    
+    logout(req, res) {
+        req.session.destroy(function (err) {
+            res.redirect('/registro');
+        });
+    }
+}
+module.exports = AdministradorController;
