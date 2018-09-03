@@ -80,10 +80,8 @@ router.get('/confirmacion', citController.confirmacion);
 //CERRAR PAGINA
 router.get('/cerrar', citController.cerrar);
 
-//CREAR PDF
-router.post('/postPDF', function (req, res, next) {
 
-});
+
 
 
 module.exports = router;
